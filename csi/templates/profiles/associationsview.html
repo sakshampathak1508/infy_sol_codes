@@ -1,0 +1,88 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | {{ass_view.name}}</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/playerprofile.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column">
+            </div>
+            <div class="twelve wide column">
+                <section>
+                    <div class="ui container">
+                        <h1 style=" font-size: 30px; text-align: center">{{ass_view.name}}</h1>
+                        <br>
+                        <h4 style="float: right; color: grey;">
+                            {{ass_view.address|linebreaks}}
+                        </h4>
+                        {%if ass_view.email|length > 0 %}
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="mailto:{{ass_view.email}} " class="h4tag" style="color: grey">{{ass_view.email}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        {%if ass_view.phone_number|length > 0 %}
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="tel: {{ass_view.phone_number}}" class="h4tag" style="color: grey"> {{ass_view.phone_number}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        {%if ass_view.mobile_number|length > 0 %}
+            
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="tel: {{ass_view.mobile_number}}" class="h4tag" style="color: grey"> {{ass_view.mobile_number}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        <br>
+                        <hr />
+                        <div class="ui stackable grid">
+                            <div class="eight wide column">
+                                <div class="ui stackable grid">
+                                    {%for p in ass_view.position.all %}
+                                    <div class="eight wide column">
+                                        <h3>{{p.position_name}}</h3>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <h3 style=" color: grey;font-size: initial;">
+                                            {{p.position_fill}}
+                                        </h3>
+                                    </div>
+                                    {%endfor%}
+                                </div>
+                                <br><br>
+                            </div>
+                            <!--<div class="two wide column"></div>-->
+                            <div class="eight wide column">
+                                <img style="height: auto;" src="/media/{{ass_view.image}}" />
+                                <br><br>
+                                {%if ass_view.image2 %}
+                                <img style="height: auto;" src="/media/{{ass_view.image2}}" />
+                                {%endif%}
+                                {%if ass_view.content|length > 0 %}
+                                    <hr/>
+                                    {{ass_view.content|safe}}
+                                {%endif%}
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </section>
+            </div>
+            <div class="two wide column">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

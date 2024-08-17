@@ -1,0 +1,139 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | {{p_view.name}}</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/playerprofile.css' %}">
+<section>
+      <div class="ui container">
+        <h2 class="h2tag" style="text-align: right; font-size: 30px;">{{p_view.name}}</h2>
+        <hr />
+        <!-- <h3 class="h3tag">{{p_view.name}} </h3> -->
+        <!-- <h4 class="h4tag">QuarterFront</h4> -->
+        <div class="ui stackable grid">
+          <div class="ten wide column">
+            <img style="height: auto;" src="/media/{{p_view.image}}" />
+            <div class="ui stackable grid">
+          <div class="five wide column">
+            <br><br>
+            <h2 class="h2tag">Socials</h2>
+            <div class="ui stackable grid">
+              <div  class="eight wide column">
+                {%if p_view.Facebook_url|length > 0 %}
+                <a href="{{p_view.Facebook_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-facebook column"></i></a>
+                {%endif%}
+                {%if p_view.Twitter_url|length > 0 %}
+                <a href="{{p_view.Twitter_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-twitter column"></i></a>
+                {%endif%}
+                {%if p_view.Instagram_url|length > 0 %}
+                <a href="{{p_view.Instagram_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-instagram column"></i></a>
+                {%endif%}
+              </div>
+            </div>
+          </div>
+          <div class="five wide column">
+            <br><br>
+            <h2 class="h2tag">Awards</h2>
+            <h4>{{p_view.awards|linebreaks}}</h4>
+          </div>
+          <div class="five wide column">
+            <br><br>
+            <h2 class="h2tag">Highest Achievements</h2>
+            <h4>{{p_view.highest_achievements|linebreaks}}</h4>
+          </div>
+          </div>
+          </div>
+          <div class="six wide column">
+            <div class="ui stackable grid">
+              <div class="eight wide column">
+                <h4 id="h4-tag"> Date Of Birth:</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 class= "h4Tag" style="float: right !important; color: grey">
+                  {{p_view.DOB|date:"d F Y" }}
+                </h4>
+              </div>
+              {%if p_view.represents|length > 0%}
+              <div class="eight wide column">
+                <h4>Represents:</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 style="float: right !important; color: grey">
+                  {{p_view.represents}}
+                </h4>
+              </div>
+              {%endif%}
+              <div class="eight wide column">
+                <h4>City, State:</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 style="float: right !important; color: grey">{{p_view.city}}, {{p_view.state}}</h4>
+              </div>
+              <div class="eight wide column">
+                <h4>Highest Break</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 style="float: right !important; color: grey">
+                  {{p_view.highest_break_billiards}}
+                  <br>
+                  {{p_view.highest_break_snooker}}
+                </h4>
+              </div>
+              {%if p_view.cue_in_use|length > 0%}
+              <div class="eight wide column">
+                <h4>Cue is Use:</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 style="float: right !important; color: grey">
+                  {{p_view.cue_in_use}}
+                </h4>
+              </div>
+              {%endif%}
+              {%if p_view.practice_at|length > 0%}
+              <div class="eight wide column">
+                <h4>Practice at:</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 style="float: right !important; color: grey">
+                  {{p_view.practice_at}}
+                </h4>
+              </div>
+              {%endif%}
+              {%if p_view.Employed_with|length > 0%}
+              <div class="eight wide column">
+                <h4>Employed With:</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 style="float: right !important; color: grey">
+                  {{p_view.Employed_with|linebreaks}}
+                </h4>
+              </div>
+              {%endif%}
+              {%if p_view.other_activites|length > 0%}
+              <div class="eight wide column">
+                <h4>Other Activites:</h4>
+              </div>
+              <div class="eight wide column">
+                <h4 style="float: right !important; color: grey">
+                  {{p_view.other_activites|linebreaks}}
+                </h4>
+              </div>
+              {%endif%}
+            </div>
+            <br><br>
+            <div class="six wide column">
+              <hr>
+              {{p_view.content|safe}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

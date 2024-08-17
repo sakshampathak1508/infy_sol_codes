@@ -1,0 +1,39 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | Playing Accessories </title>
+{%endblock%}
+{%block body%}
+<!-- <link rel="stylesheet" href="{%static 'css/index.css' %}"> -->
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <h1>Cue Sports Equipments</h1>
+            <div class="four column row">
+            {%for e in equipment%}
+            <div style="padding: 10px;" class="column">
+            <div style="height: auto;width: auto;" class="ui card">
+                <div class="image">
+                    <a href="/equipments/{{e.id}}/{{e.slug}} ">
+                        <img style="height: 100%;" class="player-image" src="/media/{{e.image_at_front}}" />
+                        <i class="fas fa-link"></i>
+                    </a>
+                </div>
+                <div class="content">
+                    <a href="/equipments/{{e.id}}/{{e.slug}} " class="header news-container"><h3>{{e.name}}</h3></a>
+                    <div class="meta">
+                        <span class="date">{{e.caption}}</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

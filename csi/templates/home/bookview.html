@@ -1,0 +1,36 @@
+{% extends "home/basic.html"%}
+
+{% load static %}
+{%block title%}
+<title>CSI | {{book_view.book_name}} </title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{% static 'css/newsview.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column"></div>
+            <div class="twelve wide column" >
+                <h1>
+                    {{book_view.book_name}}
+                </h1>
+                <img style="padding: 10px" src="/media/{{book_view.image}}" alt="image" />
+                <div class="ui stackable grid">
+                    <br>
+                    <div class="twelve wide column">
+                        <h3>
+                            {{book_view.content|safe}}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="two wide column"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

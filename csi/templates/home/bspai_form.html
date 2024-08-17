@@ -1,0 +1,201 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | BSPAI Membership Form</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/Contact.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column">
+            </div>
+            <div class="twelve wide column">
+                <h1 class="form-header" style="text-align: center">BSPAI Membership Form</h1>
+                <hr />
+                <form action="/bspai-form/" method="POST" enctype="multipart/form-data" id="fee-form">
+                    {% csrf_token %}
+                    <div class="ui equal width form">
+                        <div class="fields">
+                            <div class="field">
+                                <label for="name">First Name</label>
+                                <input type="text" id="name" name="name" placeholder="First Name" required />
+                            </div>
+                            <div class="field">
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lname" placeholder="Last Name" required />
+                            </div>
+                            <div class="field">
+                                <label for="img">Select image:</label>
+                                <input type="file" id="img" name="img" accept="image/*" required>
+                                <p>Passport Size</p>
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label for="fname">Father's Name</label>
+                                <input type="text" id="fname" name="fname" placeholder="Father's Name" required />
+                            </div>
+                            <div class="field">
+                                <label for="dob">Date of birth</label>
+                                <input type="date" id="dob" name="dob" placeholder="Date" required />
+                            </div>
+                            <div class="field">
+                                <label for="gender">Gender</label>
+                                <select name="gender" id="gender" required>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="address">Address</label>
+                            <textarea rows="6" id="address" name="address" placeholder="Address" required ></textarea>
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="City" required />
+                            </div>
+                            <div class="field">
+                                <label for="st">State</label>
+                                <select name="st" id="st" required>
+                                    <option disabled selected value>Select your state</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                    <option value="Daman and Diu">Daman and Diu</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Lakshadweep">Lakshadweep</option>
+                                    <option value="Puducherry">Puducherry</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="Uttarakhand">Uttarakhand</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <Label for="pin">Pin Code</Label>
+                                <input name="pin" id="pin" type="text" pattern="[0-9]{6}" title="Five digit zip code" placeholder="Pin Code" required />
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Phone number" required/>
+                            </div>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Email" required />
+                            </div>
+                            <div class="field">
+                                <label for="role">Myself:</label>
+                                <select name="role" id="role" required>
+                                    <option disabled selected value>Select your Role</option>
+                                    <option value="Player">Player</option>
+                                    <option value="Coach">Coach</option>
+                                    <option value="Referee">Referee</option>
+                                    <!--<option value="Supplier">Manufactuarer/Supplier</option>-->
+                                    <option value="Official">Official</option>
+                                    <option value="Supporter">Supporter</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="prac">Practicing At</label>
+                            <input type="text" id="prac" name="prac" placeholder="Practicing At" required />
+                        </div>
+                        <h2>Awards & Medals received</h2>
+                        <div class="fields">
+                        <div class="field">
+                            <label for="state">State</label>
+                            <textarea rows="3" id="state" name="state" placeholder="State"></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="national">National</label>
+                            <textarea rows="3" id="national" name="national" placeholder="National"></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="international">International</label>
+                            <textarea rows="3" id="international" name="international" placeholder="International"></textarea>
+                        </div>
+                        </div>
+                        <!--<div class="fields">-->
+                        <!--    <div class="field">-->
+                        <!--        <label for="fee">Fee</label>-->
+                        <!--            <select name="fee" id="fee" onchange="sub()" required>-->
+                        <!--                <option disabled selected value>Select Fee Type</option>-->
+                        <!--                <option value="Joining Fee">Joining Fee ₹1000</option>-->
+                        <!--                <option value="Annual Renewal">Annual Renewal Fee ₹500</option>-->
+                        <!--            </select>-->
+                        <!--    </div>-->
+                        <!--    <div class="field">-->
+                        <!--    </div>-->
+                        <!--</div>-->
+                        <!--<div class="field">-->
+                        <!--    <div class="ui checkbox">-->
+                        <!--        <input type="checkbox" name="feedisc" required>-->
+                        <!--        <label id="feedisc"></label>-->
+                        <!--    </div>-->
+                        <!--</div>-->
+                        <div class="field">
+                            <div class="g-recaptcha" data-sitekey="6LcluBEaAAAAAKg5AJUedFyj02buGLLaAwfwO3KU"></div>
+                        </div>
+                        <button type="submit" class="ui inverted green button">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="two wide column">
+            </div>
+        </div>
+    </div>
+</section>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
+{%block js%}
+<script type="text/javascript">
+    // function sub() {
+    //         var x = document.getElementById("fee").value;
+    //         if (x=="Joining Fee"){
+    //             document.getElementById("feedisc").innerHTML = "<h4>I hereby pay ₹1000 towards BSPAI Membership Joining Fee.</h4>";
+    //         }
+    //         else if(x=="Annual Renewal"){
+    //             var d = new Date();
+    //             var y = d.getFullYear();
+    //             var y1 = d.getFullYear()+1;
+    //             document.getElementById("feedisc").innerHTML = "<h4> I hereby pay ₹500 towards BSPAI Annual Renewal Fee for the year " + y +"-"+ y1 +"</h4>";
+    //         }
+    //     }
+    {% if thank %}
+    alert('Thanks for your submission to Cue Sports India. We will respond shortly.');
+    localStorage.clear();
+    document.location = "/";
+    {% endif %}
+</script>
+{% endblock %}

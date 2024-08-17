@@ -1,0 +1,28 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | {{rule_view.name}}</title>
+{%endblock%}
+{%block body%}
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column">
+            </div>
+            <div class="twelve wide column">
+                <h1>Cue Sports Rules {{rule_view.name}}</h1>
+                <img style="height: auto;" src="/media/{{rule_view.image_at_back}}" />
+                <br><br><br>
+                <h3>{{rule_view.content|safe}}</h3>
+            </div>
+            <div class="two wide column">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

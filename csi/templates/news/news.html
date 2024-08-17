@@ -1,0 +1,81 @@
+{% extends "home/basic.html"%}
+
+{% load static %}
+{%block title%}
+<title>CSI | Cue Sports News in {{y}}</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/tournamentlist.css' %}">
+<section>
+    <div class="ui container">
+        <h1>Cue Sports News</h1>
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+                <div class="ui stackable grid">
+                    <div class="eight wide column">
+                        <h3>All NEWS</h3>
+                    </div>
+                    <div class="eight wide column">
+                        <label for="year">Year</label>
+                        <form action="/news/" method="POST">
+                            {% csrf_token %}
+                            <select class="ui dropdown" id="year" name="year" onchange="this.form.submit()">
+                                <option disabled selected value> {{y}} </option>
+                                {%for i in r%}
+                                <option value="{{i}}">{{i}}</option>
+                                {%endfor%}
+                            </select>
+                            &nbsp;
+                            <!-- <button type="submit" class="compact ui yellow button">Show</button> -->
+                        </form>
+                    </div>
+                </div>
+                <h3>News in the year {{y}} are:- </h3>
+                <table class="ui striped table">
+                    <thead>
+                        <tr>
+                            <th>S. No</th>
+                            <th>Featured & Latest News</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for n in news%}
+                        <tr>
+                            <td>{{forloop.revcounter}}</td>
+                            <td>
+                                <a href=" /news/newsview/{{n.news_year}}/{{n.id}}/{{n.slug}} ">{{n.news_title}}</a>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+            <div class="five wide column">
+                <div class="ui grid">
+                    {%for s in spons %}
+                    <div class="eight wide column">
+                        <div class="image color">
+                            {%if s.url|length > 0 %}
+                            <a href="{{s.url}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%else%}
+                            <a href="/media/{{s.file}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

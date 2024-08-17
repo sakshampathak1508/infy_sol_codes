@@ -1,0 +1,298 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {%block title%}
+    <title>CueSportsIndia</title>
+    {%endblock%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alfa+Slab+One&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="pre-header">
+        <div class="ui container">
+            <a href="/">
+                <img class="ui small image" style="height: 67px; width: 250px;" src="{% static 'images/csilogo.png' %}" />
+            </a>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <div class="topnav" id="myTopnav">
+        <div class="ui container" style="background-color: #004720">
+            <a href="/">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    About CSI
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/about/">Introduction</a>
+                    <a href="/supportus/">Support us</a>
+                    <a href="/contact/">Contact us</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Cue Sports
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/billiards/">Billiards</a>
+                    <a href="/snooker/">Snooker</a>
+                    <a href="/pool/">Pool</a>
+                    <a href="/carrom/">Carrom</a>
+                    <a href="/equipments/">Equipments</a>
+                    <a href="/general-tips/">General Tips</a>
+                </div>
+            </div>
+            <a href="/rules/">Rules</a>
+            <a href="/tournament/">Events</a>
+            <a href="/news/">News</a>
+            <a href="/csiranking/">Rankings</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Profiles
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/profiles/Men">Men Players</a>
+                    <a href="/profiles/Women">Women Players</a>
+                    <a href="/profiles/referees/">Referees</a>
+                    <a href="/profiles/coaches/">Coaches</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Units
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/profiles/associations/">Associations</a>
+                    <a href="/profiles/clubs/">Clubs</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Titles
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/titles/National">National</a>
+                    <a href="/titles/International">International</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Gallery
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/books/">Books</a>
+                    <a href="https://www.facebook.com/pg/cuesportsindia/photos/" target="_blank">Photographs</a>
+                    <a href="https://www.youtube.com/user/cuesportsindia/videos/" target="_blank">Videos</a>
+                </div>
+            </div>
+            <div class="search-container">
+                <form method="get" action="/search/">
+                    <input type="text" id="search" placeholder="Search.." name="query">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <a href="javascript:void(0);" style="font-size: 15px" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+    </div>
+
+    {%block body%}
+
+    {%endblock%}
+    <footer>
+        <div class="pre-footer">
+            <div class="ui container">
+                <li style="color: #feb132 !important; font-size: 20px;text-align: center;" class="footer-list"><i></i>A
+                    pioneering web portal exclusively meant for a specific sport in india!</li>
+                <hr>
+                <img class="ui small image " style=" display: block;margin: 0 auto;height: 59; width: 657px;"
+                    src="{% static 'images/environment.png' %}" />
+            </div>
+            <br>
+        </div>
+        <div class="footer-container">
+            <div class="ui container">
+                <div class="ui five column stackable grid">
+                    <div class="column">
+                        <!--<h2 class="ui-header" id="footer-head"><i class="phone icon"></i></h2>-->
+                        <ul>
+                            <li class="footer-list"><a href="/contact/"><i
+                                        class="arrow alternate circle right icon"></i>Contact
+                                    Us</a></li>
+                                    <li class="footer-list"><a href="/site-terms/"><i class="arrow alternate circle right icon"></i>Site
+                                            Terms</a></li>
+                            <li class="footer-list"><a href="http://cuesportsindia.com/index2.htm"><i class="arrow alternate circle right icon"></i>CSI before 2020</a></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <!--<h2 class="ui-header" id="footer-head"><i class="calendar alternate outline icon"></i>Event-->
+                        <!--    Category</h2>-->
+                        <ul>
+                            <li style="color : #feb312; !important;font-size: 16px;margin-bottom: 5px;list-style-type: none;">Event Category</li>
+                            <li class="footer-list"><a href="/tournament/event/IBSF"><i
+                                        class="arrow right icon"></i>IBSF</a></li>
+                            <li class="footer-list"><a href="/tournament/event/ACBS"><i
+                                        class="arrow right icon"></i>ACBS</a></li>
+                            <li class="footer-list"><a href="/tournament/event/National"><i
+                                        class="arrow right icon"></i>National</a></li>
+                            <li class="footer-list"><a href="/tournament/event/OpenEntry"><i
+                                        class="arrow right icon"></i>Open Entry</a></li>
+                            <li class="footer-list"><a href="/tournament/event/Invitation"><i
+                                        class="arrow right icon"></i>Invitation</a></li>
+                            <li class="footer-list"><a href="/tournament/event/Professional"><i
+                                        class="arrow right icon"></i>Professional</a></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <!--<h2 class="ui-header" id="footer-head"><i class="futbol icon"></i></h2>-->
+                        <ul>
+                            <li style="color : #feb312; !important;font-size: 16px;margin-bottom: 5px;list-style-type: none;">Sports Category</li>
+                            <li class="footer-list"><a href="/tournament/sport/Billiards"><i
+                                        class="arrow right icon"></i>Billiards</a></li>
+                            <li class="footer-list"><a href="/tournament/sport/Snooker"><i
+                                        class="arrow right icon"></i>Snooker</a></li>
+                            <li class="footer-list"><a href="/tournament/sport/6REDS"><i
+                                        class="arrow right icon"></i>6RED</a></li>
+                            <li class="footer-list"><a href="/tournament/sport/10REDS"><i
+                                        class="arrow right icon"></i>10RED</a></li>
+                            <li class="footer-list"><a href="/tournament/sport/Pool"><i
+                                        class="arrow right icon"></i>Pool</a></li>
+                            <li class="footer-list"><a href="/tournament/sport/Carrom"><i
+                                        class="arrow right icon"></i>Carrom</a></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <!--<h2 class="ui-header" id="footer-head"><i class="linkify icon"></i>Links-->
+                        <!--</h2>-->
+                        <ul>
+                            <li style="color : #feb312; !important;font-size: 16px;margin-bottom: 5px;list-style-type: none;">Links</li>
+                            <li class="footer-list"><a href="https://www.olympic.org" target="_blank"><i
+                                        class="arrow right icon"></i>IOA</a></li>
+                            <li class="footer-list"><a href="https://www.wcbs.sport" target="_blank"><i
+                                        class="arrow right icon"></i>WCBS</a></li>
+                            <li class="footer-list"><a href="http://www.ibsf.info" target="_blank"><i
+                                        class="arrow right icon"></i>IBSF</a></li>
+                            <li class="footer-list"><a href="https://www.wst.tv" target="_blank"><i
+                                        class="arrow right icon"></i>WST</a></li>
+                            <li class="footer-list"><a href="https://www.wpapool.com" target="_blank"><i
+                                        class="arrow right icon"></i>WPA-POOL</a></li>
+                            <li class="footer-list"><a href="http://www.wada-ama.org" target="_blank"><i
+                                        class="arrow right icon"></i>WADA</a></li>
+                        </ul>
+                    </div>
+                    <div style="margin-left: -56px;margin-top: 11px;" class="column">
+                        <!-- <h2 class="ui-header" id="footer-head"><i class="linkify icon"></i></h2> -->
+                        <br>
+                        <ul>
+    
+                            <li class="footer-list"><a href="http://www.acbs.qa" target="_blank"><i
+                                        class="arrow right icon"></i>ACBS</a></li>
+                            <li class="footer-list"><a href="http://www.pabsa.org" target="_blank"><i
+                                        class="arrow right icon"></i>PABSA</a></li>
+                            <li class="footer-list"><a href="http://www.ebsa.tv" target="_blank"><i
+                                        class="arrow right icon"></i>EBSA</a></li>
+                            <li class="footer-list"><a href="http://www.obsf.info" target="_blank"><i
+                                        class="arrow right icon"></i>OBSF</a></li>
+                            <li class="footer-list"><a href="http://www.africabsc.com" target="_blank"><i
+                                        class="arrow right icon"></i>ABSC</a></li>
+                            <li class="footer-list"><a href="http://www.nadaindia.org" target="_blank"><i
+                                        class="arrow right icon"></i>NADA</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-footer-container">
+            <div class="ui container">
+                <div class="ui three column stackable grid">
+                    <div class="column">
+                        <h5 style="float: left;">© All rights reserved</h5>
+                        <br>
+                        <h5 style="height:40px; width:131px;"><span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=osH4iUBteKupRqAdT14K6ltdrzlj4hUN66vVVid21Dru3a3FS98FncVRoEzt"></script></span></h5>
+                    </div>
+                    <div class="column">
+                        <h5 style="padding-inline-start: inherit;">Developers:- <div class="footer-list" style="display: inline-block;"><a href="https://www.linkedin.com/in/saksham-pathak-701527194/" target="_blank" style="font-size: 14px;">
+                                        Saksham</a></div>,
+                                        <div class="footer-list" style="display: inline-block;"><a class="footer-list" href="https://www.linkedin.com/in/piyush-mittal-9a71121b6/" target="_blank" style="font-size: 14px;">
+                                        Piyush</a></div>
+                        </h5>
+                    </div>
+                    <div class="column">
+                        <a href="https://www.facebook.com/cuesportsindia/" target="_blank"><h5 style="float: right; padding: 3px;"><i class="facebook icon"></i></h5></a>
+                        <a href="https://www.youtube.com/cuesportsindia/" target="_blank"><h5 style="float: right; padding: 3px;"><i class="youtube icon"></i></h5></a>
+                        <a href="https://www.instagram.com/cuesportsindia/" target="_blank"><h5 style="float: right; padding: 3px;"><i class="instagram icon"></i></h5></a>
+                        <a href="https://www.twitter.com/cuesportsindia/" target="_blank"><h5 style="float: right; padding: 3px;"><i class="twitter icon"></i></h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides((slideIndex += n));
+        }
+
+        function currentSlide(n) {
+            showSlides((slideIndex = n));
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+        
+    </script>
+    {%block js%}
+    {%endblock%}
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | About Pool </title>
+{%endblock%}
+{%block body%}
+<!-- <link rel="stylesheet" href="{%static 'css/index.css' %}"> -->
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+                {%for c in cont %}
+                {{c.content_pool|safe}}
+                {%endfor%}
+            </div>
+            <div class="five wide column" style="margin-top: 50px;">
+                <div class="ui grid">
+                    {%for s in spons %}
+                    <div class="eight wide column">
+                        <div class="image color">
+                            {%if s.url|length > 0 %}
+                            <a href="{{s.url}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%else%}
+                            <a href="/media/{{s.file}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

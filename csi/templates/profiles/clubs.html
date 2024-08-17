@@ -1,0 +1,52 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | CLUBS</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/profile.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <h1>CLUBS</h1>
+            <div class="four column row">
+            {%for p in club%}
+            <div style="padding: 10px;" class="column">
+            <div style="height: auto;width: auto;" class="ui card">
+                <div class="image">
+                    <a href=" /profiles/clubs/{{p.id}}/{{p.slug}} ">
+                        <img class="player-image" src="/media/{{p.logo}}" />
+                        <i class="fas fa-link"></i>
+                    </a>
+                </div>
+                <div class="content">
+                    <a href=" /profiles/clubs/{{p.id}}/{{p.slug}}" class="header news-container">
+                        <h3>
+                        {{p.short_name}}
+                        </h3>
+                    </a>
+                    <div class="meta">
+                        <span class="date">
+                            {%if p.city|length > 0 and p.state|length > 0 %}
+                                {{p.city}}, {{p.state}}
+                            {%elif p.city|length > 0 %}
+                                {{p.city}}
+                            {%elif p.state|length > 0 %}
+                                {{p.state}}
+                            {%endif%}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

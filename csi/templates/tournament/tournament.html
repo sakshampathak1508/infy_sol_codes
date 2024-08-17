@@ -1,0 +1,91 @@
+{% extends "home/basic.html"%}
+
+{% load static %}
+{%block title%}
+<title>CSI | Championships and Selection Camps in {{y}} </title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/tournamentlist.css' %}">
+<section>
+    <div class="ui container">
+        <h1>Tournaments & Camps</h1>
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+                <div style="align-content: center;">
+                    <a href="/tournament/event-form"><button style="float: right;" class="ui primary button">
+                        Submit Tournament Details
+                    </button></a>
+                </div>
+                <div class="ui stackable grid">
+                    <div class="eight wide column">
+                        <h3>All Tournaments</h3>
+                    </div>
+                    <div class="eight wide column">
+                        <label for="year" >Year</label>
+                        <form action="/tournament/" method="POST">
+                            {% csrf_token %}
+                            <select class="ui dropdown" id="year" name="year" onchange="this.form.submit()">
+                                <option disabled selected value> {{y}} </option>
+                                {%for i in r%}
+                                <option value="{{i}}">{{i}}</option>
+                                {%endfor%}
+                            </select>
+                            &nbsp;
+                            <!-- <button type="submit" class="compact ui yellow button">Show</button> -->
+                        </form>
+                    </div>
+                </div>
+                <h3>Tournaments in the year {{y}} are:- </h3>
+                <table class="ui striped table">
+                    <thead>
+                        <tr>
+                            <th>S.NO.</th>
+                            <th>Date</th>
+                            <th>Event</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for t in tour%}
+                        <tr>
+                            <td>{{forloop.revcounter}}</td>
+                            <td>{{t.tournament_startdate.date|date:"d M Y"}}</td>
+                            <td>
+                                <a href="tourview/{{t.tournament_year}}/{{t.id}}/{{t.slug}} ">{{t.tournament_name}}</a>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+            <div class="five wide column">
+                <div class="ui grid">
+                    {%for s in spons %}
+                    <div class="eight wide column">
+                        <div class="image color">
+                            {%if s.url|length > 0 %}
+                            <a href="{{s.url}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%else%}
+                            <a href="/media/{{s.file}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

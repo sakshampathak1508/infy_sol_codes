@@ -1,0 +1,26 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | Ranking - Men </title>
+{%endblock%}
+{%block body%}
+<!-- <link rel="stylesheet" href="{%static 'css/index.css' %}"> -->
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column"></div>
+            <div class="twelve wide column">
+                {%for r in rank %}
+                {{r.MEN_RANKING|safe}}
+                {%endfor%}
+            </div>
+            <div class="two wide column"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

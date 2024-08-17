@@ -1,0 +1,62 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | Indian Referees</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/profile.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <h2>Referees</h2>
+            <div class="doubling four column row">
+                <!-- <div class="column"> -->
+                
+                <!--<div class="ui cards">-->
+                    {%for p in refs%}
+                    <div style="padding: 10px;" class="column">
+                    <div style="height: auto;width: auto;" class="ui card">
+                        <div class="image color">
+                            <a href="/profiles/referees/{{p.id}}/{{p.slug}}">
+                                <img class="player-image" src="/media/{{p.image}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <a href="/profiles/referees/{{p.id}}/{{p.slug}}" class="header">{{p.name}}</a>
+                            <div class="meta">
+                                <span class="date">{{p.caption_at_front}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    {%endfor%}
+                <!-- </div> -->
+                <!--</div>-->
+            </div>
+                <!-- {%for p in player|slice:":1"%}
+            <h2>{{p.gender}} National Champions</h2>
+            {%endfor%}
+            <div class="doubling five column row">
+                {%for p in player%}
+                <div class="column">
+                    <div class="image color">
+                        <a href=" /profiles/profileview/{{p.gender}}/{{p.id}}">
+                            <img class="player-image" src="/media/{{p.image_at_back}}" />
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                    <b style="text-align: center;">{{p.name}}</b>
+                </div>
+                {%endfor%}
+            </div> -->
+            </div>
+        </div>
+</section>
+
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

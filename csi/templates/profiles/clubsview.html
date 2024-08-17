@@ -1,0 +1,169 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | {{club.name}}</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/playerprofile.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column">
+            </div>
+            <div class="twelve wide column">
+                <section>
+                    <div class="ui container">
+                        <h1 style=" font-size: 30px; text-align: center">{{club.name}}</h1>
+                        <br>
+                        <h4 style="float: right; color: grey;">
+                            {{club.address|linebreaks}}
+                        </h4>
+                        {%if club.email1|length > 0 %}
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="mailto:{{club.email1}} " class="h4tag" style="color: grey">{{club.email1}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        {%if club.email2|length > 0 %}
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="mailto:{{club.email2}} " class="h4tag" style="color: grey">{{club.email2}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        {%if club.phone_number1|length > 0 %}
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="tel: {{club.phone_number}}" class="h4tag" style="color: grey"> {{club.phone_number1}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        {%if club.phone_number2|length > 0 %}
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="tel: {{club.phone_number2}}" class="h4tag" style="color: grey"> {{club.phone_number2}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        {%if club.phone_number3|length > 0 %}
+                        <div class="eight wide column">
+                            <h4 style="color: grey">
+                                <a href="tel: {{club.phone_number3}}" class="h4tag" style="color: grey"> {{club.phone_number3}}</a>
+                            </h4>
+                        </div>
+                        {%endif%}
+                        <div  class="eight wide column">
+                            {%if club.facebook_url|length > 0 %}
+                            <a href="{{club.facebook_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-facebook column"></i></a>
+                            {%endif%}
+                            {%if club.twitter_url|length > 0 %}
+                            <a href="{{club.twitter_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-twitter column"></i></a>
+                            {%endif%}
+                            {%if club.insta_url|length > 0 %}
+                            <a href="{{club.insta_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-instagram column"></i></a>
+                            {%endif%}
+                        </div>
+                        <hr />
+                        <div class="ui stackable grid">
+                            <div class="eight wide column">
+                                <div class="ui stackable grid">
+                                    {%if club.timing_from %}
+                                    <div class="eight wide column">
+                                        <h3>Timings</h3>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <h3 style=" color: grey;font-size: initial;">
+                                            {{club.timing_from|time:'H:i'}} - {{club.timing_to|time:'H:i'}} 
+                                        </h3>
+                                    </div>
+                                    {%endif%}
+                                    {%if club.snooker_tables|length > 0 %}
+                                    <div class="eight wide column">
+                                        <h3>Snooker Tables</h3>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <h3 style=" color: grey;font-size: initial;">
+                                            {{club.snooker_tables}}
+                                        </h3>
+                                    </div>
+                                    {%endif%}
+                                    {%if club.pool_tables|length > 0 %}
+                                    <div class="eight wide column">
+                                        <h3>Pool Tables</h3>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <h3 style=" color: grey;font-size: initial;">
+                                            {{club.pool_tables}}
+                                        </h3>
+                                    </div>
+                                    {%endif%}
+                                    {%if club.carrom_tables|length > 0 %}
+                                    <div class="eight wide column">
+                                        <h3>Carrom Tables</h3>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <h3 style=" color: grey;font-size: initial;">
+                                            {{club.carrom_tables}}
+                                        </h3>
+                                    </div>
+                                    {%endif%}
+                                    {%if club.manager_name|length > 0 %}
+                                    <div class="eight wide column">
+                                        <h3>Manager</h3>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <h3 style=" color: grey;font-size: initial;">
+                                            {{club.manager_name}}
+                                        </h3>
+                                    </div>
+                                    {%endif%}
+                                    {%if club.entry_system|length > 0 %}
+                                    <div class="eight wide column">
+                                        <h3>Entry System</h3>
+                                    </div>
+                                    <div class="eight wide column">
+                                        <h3 style=" color: grey;font-size: initial;">
+                                            {{club.entry_system}}
+                                        </h3>
+                                    </div>
+                                    {%endif%}
+                                </div>
+                                <br>
+                                {%if club.content|length > 0 %}
+                                    <hr/>
+                                    {{club.content|safe}}
+                                {%endif%}
+                            </div>
+                            <!--<div class="two wide column"></div>-->
+                            <div class="eight wide column">
+                                <img style="height: auto;" src="/media/{{club.logo}}" />
+                                <br><br>
+                                {%if club.image1 %}
+                                <img style="height: auto;" src="/media/{{club.image1}}" />
+                                {%endif%}
+                                <br><br>
+                                {%if club.image2 %}
+                                <img style="height: auto;" src="/media/{{club.image2}}" />
+                                {%endif%}
+                                <br><br>
+                                {%if club.image3 %}
+                                <img style="height: auto;" src="/media/{{club.image3}}" />
+                                {%endif%}
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </section>
+            </div>
+            <div class="two wide column">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

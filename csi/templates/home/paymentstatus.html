@@ -1,0 +1,46 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | Payments status</title>
+{%endblock%}
+{% block body %}
+<section>
+    
+<div class="ui container">
+    <div class="ui stackable grid">
+        <div class="three wide column">
+
+            </div>
+    <div class="ten wide column">
+        <h2>Transaction Information:</h2>                    <br>
+    <h3> STATUS: {{ response.STATUS }} </h3>                 <br>                          <br>
+    ORDER ID: {{ response.ORDERID }}                          <br>
+    BANK TXN ID: {{ response.BANKTXNID }}                      <br>
+    AMOUNT: {{ response.TXNAMOUNT }}                      <br>
+    CURRENCY: {{ response.CURRENCY }}                        <br>
+    TXNDATE: {{ response.TXNDATE }}                          <br>
+    GATEWAYNAME: {{ response.GATEWAYNAME }}                  <br>
+    BANKNAME: {{ response.BANKNAME }}                        <br>
+    PAYMENTMODE: {{ response.PAYMENTMODE }}                  <br>
+        {% if response.RESPCODE == '01' %}
+        <br>
+        <h2>Payment Successful</h2>
+        {% else %}
+        PAYMENT FAILED!!! TRY AGAIN
+        {% endif%}
+        <button class="ui ui inverted green button"><a href="javascript:if(window.print)window.print()" style="color: black;">Print</a></button>
+        <button class="ui ui inverted green button"><a href="/" style="color: black;">Return To Home</a></button>
+    </div>
+    <div class="three wide column">
+
+            </div>
+    </div>
+
+</div>
+</section>
+{% endblock %}
+{% block js %}
+<script>
+</script>
+{% endblock %}

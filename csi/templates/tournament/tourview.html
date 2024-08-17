@@ -1,0 +1,513 @@
+{% extends "home/basic.html"%}
+
+{% load static %}
+{%block title%}
+<title>CSI | {{t_view.tournament_name}}</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{% static 'css/tournament.css' %}" />
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}" />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Ultra&display=swap" rel="stylesheet" />
+<section>
+    <div class="ui container">
+        <div class="ui stackable three column grid" style="margin-bottom: 20px">
+            <div class="column">
+                <p style="color: #004720;">
+                    <span style="font-size: 22px; font-weight: 700;">{{ t_view.tournament_startdate|date:"F" }}</span>
+                    <br>
+                    <span id="date-span">{{ t_view.tournament_startdate|date:"d" }}</span>
+                    <br>
+                    <span id="date">{{ t_view.tournament_startdate|date:"Y" }}</span>
+                </p>
+            </div>
+            <div class="column">
+                <p style="color: black;">
+                    <span style="font-size: 30px;">{{t_view.tournament_name}}</span>
+                    <br>
+                    <span style="font-size: 14px;">{{t_view.tournament_venue}} <br>
+                        {%if t_view.note1|length > 0 %}
+                        <span style="font-size: 14px; color: #c70707;">{{t_view.note1}} </span>
+                        <br>
+                        {%endif%}
+                        {%if t_view.note2|length > 0 %}
+                        {{t_view.note2}}</span>
+                    {%endif%}
+                </p>
+            </div>
+            <div class="column">
+                <p style="color: #c70707;">
+                    <span style="font-size: 22px; font-weight: 700;">{{ t_view.tournament_enddate|date:"F" }}</span>
+                    <br>
+                    <span id="date-span">{{ t_view.tournament_enddate|date:"d" }}</span>
+                    <br>
+                    <span id="date">{{ t_view.tournament_enddate|date:"Y" }}</span>
+                </p>
+            </div>
+        </div>
+        <hr style="margin-bottom: 40px !important;" />
+        <div class="ui stackable grid">
+            <div class="eight wide column">
+                <div class="ui stackable grid">
+                    {%if t_view.event_category|length > 0 or t_view.sports_category|length > 0 or t_view.last_date_of_entry|length > 0 %}
+                    <h1 class="table-header">Details</h1>
+                    <div class="sixteen wide column">
+                        <table class="ui striped table">
+                            <tbody>
+                                <tr>
+                                    <td style="color: grey;"> {{t_view.event_category}}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="color: grey;">{{t_view.sports_category}}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Last Date of Entry</td>
+                                    <td style="text-align: right; position: relative;">
+                                        {{t_view.last_date_of_entry|date:"d F Y"}}</td>
+                                </tr>
+                                <tr>
+                                    {%if t_view.entry_fee|length > 0 %}
+                                    <td>Registration Fee</td>
+                                    <td style="text-align: right; position: relative;">{{t_view.currency}}
+                                        {{t_view.entry_fee}}</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {%endif%}
+                    {%if t_view.prize_money_total|length > 0 or t_view.prize_money_winner|length > 0 %}
+                    <h1 class="table-header">Prize Details</h1>
+                    <div class="sixteen wide column">
+                        <table class="ui striped table">
+                            <tbody>
+                                <tr>
+                                    {%if t_view.prize_money_total|length > 0 %}
+                                    <td>Prize money Total</td>
+                                    <td style="float: right;"> {{t_view.currency}} {{t_view.prize_money_total}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_winner|length > 0 %}
+                                    <td>Winner </td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_winner}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_runner_up|length > 0 %}
+                                    <td>Runner up</td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_runner_up}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_semi_finalist|length > 0 %}
+                                    <td>Semi Finalist (each)</td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_semi_finalist}}
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_quarter_finalist|length > 0 %}
+                                    <td>Quarter Finalist (each)</td>
+                                    <td style="float: right;">{{t_view.currency}}
+                                        {{t_view.prize_money_quarter_finalist}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_last16|length > 0 %}
+                                    <td>Last 16 (each)</td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_last16}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_last32|length > 0 %}
+                                    <td>Last 32 (each)</td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_last32}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_highestbreak_1|length > 0 %}
+                                    <td>Highest Break 1</td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_highestbreak_1}}
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_highestbreak_2|length > 0 %}
+                                    <td>Highest Break 2</td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_highestbreak_2}}
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prize_money_highestbreak_3|length > 0 %}
+                                    <td>Highest Break 3</td>
+                                    <td style="float: right;">{{t_view.currency}} {{t_view.prize_money_highestbreak_3}}
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {%endif%}
+                    {%if t_view.group_Stage|length > 0 or t_view.prelim_Knockout|length > 0 or t_view.last64_Stage|length > 0 or t_view.last32_Stage|length > 0 or t_view.last16_Stage|length > 0 or t_view.quarter_Finals|length > 0 or t_view.semi_Finals|length > 0 or t_view.FINAL|length > 0 %}
+                    <h1 class="table-header">Format</h1>
+                    <div class="sixteen wide column">
+                        <table class="ui striped table">
+                            <tbody>
+                                <tr>
+                                    {%if t_view.group_Stage|length > 0 %}
+                                    <td>Group Stage</td>
+                                    <td style="float: right;"> {{t_view.group_Stage}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.prelim_Knockout|length > 0 %}
+                                    <td>Prelim Knockout</td>
+                                    <td style="float: right;">{{t_view.prelim_Knockout}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.last64_Stage|length > 0 %}
+                                    <td>Last-64 Stage</td>
+                                    <td style="float: right;">{{t_view.last64_Stage}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.last32_Stage|length > 0 %}
+                                    <td>Last-32 Stage</td>
+                                    <td style="float: right;">{{t_view.last32_Stage}}
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.last16_Stage|length > 0 %}
+                                    <td>Last-16 Stage</td>
+                                    <td style="float: right;">{{t_view.last16_Stage}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.quarter_Finals|length > 0 %}
+                                    <td>Quarter Finals</td>
+                                    <td style="float: right;">{{t_view.quarter_Finals}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.semi_Finals|length > 0 %}
+                                    <td>Semi Finals</td>
+                                    <td style="float: right;">{{t_view.semi_Finals}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.FINAL|length > 0 %}
+                                    <td>FINAL</td>
+                                    <td style="float: right;">{{t_view.FINAL}}
+                                    </td>
+                                    {%endif%}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {%endif%}
+                    {%if t_view.entry_fee|length > 0 or t_view.bank_name|length > 0 or t_view.branch|length > 0 or t_view.branch|length > 0 or t_view.account_name|length > 0 or t_view.account_name|length > 0 or t_view.account_number > 0 or t_view.paytm_number|length > 0 or t_view.payment_url|length > 0 %}
+                    <h1 class="table-header">Registration Details</h1>
+                    <div class="sixteen wide column"> 
+                        <table class="ui striped table">
+                            <thead>
+                                <tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {%if t_view.entry_fee|length > 0 %}
+                                    <td>Entry Fee</td>
+                                    <td style="float: right;">{{t_view.entry_fee}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.bank_name|length > 0 %}
+                                    <td>Bank Name</td>
+                                    <td style="float: right;">{{t_view.bank_name}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.branch|length > 0 %}
+                                    <td>Branch Name</td>
+                                    <td style="float: right;">{{t_view.branch}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.account_name|length > 0 %}
+                                    <td>Account Name</td>
+                                    <td style="float: right;">{{t_view.account_name}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.account_number > 0 %}
+                                    <td>Account Number</td>
+                                    <td style="float: right;">{{t_view.account_number}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.ifsc_code|length > 0 %}
+                                    <td>IFSC Code</td>
+                                    <td style="float: right;">{{t_view.ifsc_code}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.paytm_number|length > 0 %}
+                                    <td>Paytm Number</td>
+                                    <td style="float: right;">{{t_view.paytm_number}}</td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.payment_url|length > 0 %}
+                                    <td>Online Payment</td>
+                                    <td style="float: right;"><a style="color: black;" href="{{t_view.payment_url}} "
+                                            target="_blank">CLICK HERE</a></td>
+                                    {%endif%}
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="color: grey;margin-left: 10px;">
+                            {%if t_view.payment_note|length > 0 %}
+                            {{t_view.payment_note|linebreaks}}
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%endif%}
+                    {%if t_view.name1|length > 0 or t_view.contact_num1|length > 0 %}
+                    <h1 class="table-header">Contact Details</h1>
+                    <div class="sixteen wide column">
+                        <table class="ui striped table">
+                            <thead>
+                                <tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {%if t_view.name1|length > 0 %}
+                                    <td> {{t_view.name1}} </td>
+                                    {%endif%}
+                                    {%if t_view.contact_num1|length > 0 %}
+                                    <td style="float: right;"> {{t_view.contact_num1}} </td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.name2|length > 0 %}
+                                    <td> {{t_view.name2}} </td>
+                                    {%endif%}
+                                    {%if t_view.contact_num2|length > 0 %}
+                                    <td style="float: right;"> {{t_view.contact_num2}} </td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.name3|length > 0 %}
+                                    <td> {{t_view.name3}} </td>
+                                    {%endif%}
+                                    {%if t_view.contact_num3|length > 0 %}
+                                    <td style="float: right;"> {{t_view.contact_num3}} </td>
+                                    {%endif%}
+                                </tr>
+                                <tr>
+                                    {%if t_view.name4|length > 0 %}
+                                    <td> {{t_view.name4}} </td>
+                                    {%endif%}
+                                    {%if t_view.contact_num4|length > 0 %}
+                                    <td style="float: right;"> {{t_view.contact_num4}} </td>
+                                    {%endif%}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {%endif%}
+                    {%if t_view.draw_name|length > 0 or t_view.results_name > 0%}
+                    <h1 class="table-header">Draw/Results</h1>
+                    <div class="sixteen wide column">
+                        <table class="ui striped table">
+                            <thead>
+                                {%if t_view.draw_name|length > 0 or t_view.results_name > 0%}
+                                <tr>
+                                    {%if t_view.draw_url|length > 0 %}
+                                    <td> <a style="color: black;" href="{{t_view.draw_url}} "
+                                            target="_blank">{{t_view.draw_name}}</a></td>
+                                    {%else%}
+                                    <td> <a style="color: black;" href="/media/{{t_view.draw_file}}"
+                                            target="_blank">{{t_view.draw_name}}</a></td>
+                                    {%endif%}
+                                    {%if t_view.results_url|length > 0 %}
+                                    <td><a style="float: right; color: black;" href="{{t_view.results_url}}"
+                                            target="_blank">{{t_view.results_name}}</a></td>
+                                    {%else%}
+                                    <td><a style="float: right; color: black;" href="/media/{{t_view.results_file}}"
+                                            target="_blank">{{t_view.results_name}}</a></td>
+                                    {%endif%}
+                                </tr>
+                                {%endif%}
+                                {%if t_view.draw2_name|length > 0 or t_view.results2_name > 0%}
+                                <tr>
+                                    {%if t_view.draw2_url|length > 0 %}
+                                    <td> <a style="color: black;" href="{{t_view.draw2_url}} "
+                                            target="_blank">{{t_view.draw2_name}}</a></td>
+                                    {%else%}
+                                    <td> <a style="color: black;" href="/media/{{t_view.draw2_file}}"
+                                            target="_blank">{{t_view.draw2_name}}</a></td>
+                                    {%endif%}
+                                    {%if t_view.results2_url|length > 0 %}
+                                    <td><a style="float: right; color: black;" href="{{t_view.results2_url}}"
+                                            target="_blank">{{t_view.results2_name}}</a></td>
+                                    {%else%}
+                                    <td><a style="float: right; color: black;" href="/media/{{t_view.results2_file}}"
+                                            target="_blank">{{t_view.results2_name}}</a></td>
+                                    {%endif%}
+                                </tr>
+                                {%endif%}
+                                {%if t_view.draw3_name|length > 0 or t_view.results3_name > 0%}
+                                <tr>
+                                    {%if t_view.draw3_url|length > 0 %}
+                                    <td> <a style="color: black;" href="{{t_view.draw3_url}} "
+                                            target="_blank">{{t_view.draw3_name}}</a></td>
+                                    {%else%}
+                                    <td> <a style="color: black;" href="/media/{{t_view.draw3_file}}"
+                                            target="_blank">{{t_view.draw3_name}}</a></td>
+                                    {%endif%}
+                                    {%if t_view.results3_url|length > 0 %}
+                                    <td><a style="float: right; color: black;" href="{{t_view.results3_url}}"
+                                            target="_blank">{{t_view.results3_name}}</a></td>
+                                    {%else%}
+                                    <td><a style="float: right; color: black;" href="/media/{{t_view.results3_file}}"
+                                            target="_blank">{{t_view.results3_name}}</a></td>
+                                    {%endif%}
+                                </tr>
+                                {%endif%}
+                                {%if t_view.draw4_name|length > 0 or t_view.results4_name > 0%}
+                                <tr>
+                                    {%if t_view.draw4_url|length > 0 %}
+                                    <td> <a style="color: black;" href="{{t_view.draw4_url}} "
+                                            target="_blank">{{t_view.draw4_name}}</a></td>
+                                    {%else%}
+                                    <td> <a style="color: black;" href="/media/{{t_view.draw4_file}}"
+                                            target="_blank">{{t_view.draw4_name}}</a></td>
+                                    {%endif%}
+                                    {%if t_view.results4_url|length > 0 %}
+                                    <td><a style="float: right; color: black;" href="{{t_view.results4_url}}"
+                                            target="_blank">{{t_view.results4_name}}</a></td>
+                                    {%else%}
+                                    <td><a style="float: right; color: black;" href="/media/{{t_view.results4_file}}"
+                                            target="_blank">{{t_view.results4_name}}</a></td>
+                                    {%endif%}
+                                </tr>
+                                {%endif%}
+                                {%if t_view.draw5_name|length > 0 or t_view.results5_name > 0%}
+                                <tr>
+                                    {%if t_view.draw5_url|length > 0 %}
+                                    <td> <a style="color: black;" href="{{t_view.draw5_url}} "
+                                            target="_blank">{{t_view.draw5_name}}</a></td>
+                                    {%else%}
+                                    <td> <a style="color: black;" href="/media/{{t_view.draw5_file}}"
+                                            target="_blank">{{t_view.draw5_name}}</a></td>
+                                    {%endif%}
+                                    {%if t_view.results5_url|length > 0 %}
+                                    <td><a style="float: right; color: black;" href="{{t_view.results5_url}}"
+                                            target="_blank">{{t_view.results5_name}}</a></td>
+                                    {%else%}
+                                    <td><a style="float: right; color: black;" href="/media/{{t_view.results5_file}}"
+                                            target="_blank">{{t_view.results5_name}}</a></td>
+                                    {%endif%}
+                                </tr>
+                                {%endif%}
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+            <div class="eight wide column">
+                <div class="ui stackable grid">
+                    <div class="sixteen wide column">
+                        <img src="/media/{{t_view.tournament_image1}}" alt="image" />
+                    </div>
+                    {% if t_view.tournament_image2 %}
+                    <div class="sixteen wide column">
+                        <img src="/media/{{t_view.tournament_image2}}" alt=" " />
+                    </div>
+                    {%endif%}
+                    {% if t_view.tournament_image3 %}
+                    <div class="sixteen wide column">
+                        <img src="/media/{{t_view.tournament_image3}}" alt=" " />
+                    </div>
+                    {%endif%}
+                    {%if t_view.details|length > 0 %}
+                    <div class="sixteen wide column">
+                        {{t_view.details|safe|escape}}
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+            {%if t_view.disclaimer|length > 0 %}
+            <div class="sixteen wide column">
+                <h3 style="text-align: justify; font-size: 15px;">
+                    <hr>
+                    {{t_view.disclaimer|linebreaks}}
+                </h3>
+            </div>
+            {%endif%}
+        </div>
+        <hr>
+        <section>
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="doubling six column row">
+                    {%for s in spons%}
+                    <div class="column">
+                        <div class="image color">
+                            {%if s.url|length > 0 %}
+                            <a href="{{s.url}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%else%}
+                            <a href="/media/{{s.file}}" target="_blank">
+                                <img  class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+                <div class="doubling six column row">
+                    {%for s in spons1%}
+                    <div class="column">
+                        <div class="image color">
+                            {%if s.url|length > 0 %}
+                            <a href="{{s.url}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%else%}
+                            <a href="/media/{{s.file}}" target="_blank">
+                                <img  class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+</section>
+
+
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

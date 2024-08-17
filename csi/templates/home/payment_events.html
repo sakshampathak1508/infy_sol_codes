@@ -1,0 +1,130 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | Payment Cue Sports India</title>
+{%endblock%}
+{%block body%}
+<!-- <link rel="stylesheet" href="{%static 'css/index.css' %}"> -->
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column">
+
+            </div>
+            <div class="twelve wide column">
+                <h1 class="form-header">Online Registration Fee Payment</h1>
+                <hr />
+                <form action="/payment-events/" method="POST">
+                    {% csrf_token %}
+                    <div class="ui equal width form">
+                        <div class="fields">
+                            <div class="field">
+                                <label for="name">First Name</label>
+                                <input type="text" id="name" name="name" placeholder="First Name" required />
+                            </div>
+                            <div class="field">
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lname" placeholder="Last Name" required />
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="City" required />
+                            </div>
+                            <div class="field">
+                                <label for="state">State</label>
+                                <select name="state" id="state" required>
+                                    <option selected disabled value="">Select State</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                    <option value="Daman and Diu">Daman and Diu</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Lakshadweep">Lakshadweep</option>
+                                    <option value="Puducherry">Puducherry</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="Uttarakhand">Uttarakhand</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Email" required />
+                            </div>
+                            <div class="field">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Phone number" required />
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="entryfor">Registration For</label>
+                            <select name="entryfor" id="entryfor" onchange="amount()" required>
+                                <option selected disabled value="">Select</option>
+                                {%for t in tour %}
+                                <option id="{{t.entry_fee}}" value="{{t.tournament_name}}">{{t.tournament_name}}</option>
+                                {%endfor%}
+                            </select>
+                        </div>
+                        <div class="field">
+                            <input type="hidden" id="amount_to_be" name="amount_to_be" value="" required/>
+                        </div>
+                        <h3>Registration Fee:- ₹ <span id="amount" placeholder="(select the tournament first)"></span></h3>
+                        <div class="field">
+                            <script src='https://www.google.com/recaptcha/api.js'></script>
+                            <div class="g-recaptcha" data-sitekey="6LcluBEaAAAAAKg5AJUedFyj02buGLLaAwfwO3KU"></div>
+                        </div>
+                        <button type="submit" class="ui inverted green button">Pay</button>
+                    </div>
+                </form>
+            </div>
+            <div class="two wide column">
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
+{%block js%}
+<script>
+    select = document.getElementById("entryfor");
+    select.onchange = function () {
+        var b = document.getElementById('amount')
+        var options = this.getElementsByTagName("option");
+        var optionHTML = options[this.selectedIndex].id;
+        b.innerHTML = optionHTML 
+        var amms = document.getElementById('amount_to_be')
+        amms.value = optionHTML
+    };
+</script>
+{% endblock %}

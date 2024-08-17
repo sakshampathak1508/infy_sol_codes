@@ -1,0 +1,28 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | Site Terms</title>
+{%endblock%}
+{%block body%}
+<!-- <link rel="stylesheet" href="{%static 'css/index.css' %}"> -->
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="two wide column">
+            </div>
+            <div class="twelve wide column">
+                {%for c in cont %}
+                {{c.content_site_terms|safe}}
+                {%endfor%}
+            </div>
+            <div class="two wide column">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | {{ref_view.name}}</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/playerprofile.css' %}">
+<section>
+    <div class="ui container">
+        <h2 class="h2tag" style="text-align: right; font-size: 30px;">{{ref_view.name}}</h2>
+        <hr />
+        <!-- <h3 class="h3tag">{{ref_view.name}} </h3> -->
+        <!-- <h4 class="h4tag">QuarterFront</h4> -->
+        <div class="ui stackable grid">
+            <div class="ten wide column">
+                <img style="height: auto;" src="/media/{{ref_view.image}}" />
+                <div class="ui stackable grid">
+                    <div class="five wide column">
+                        <br><br>
+                        <h2 class="h2tag">Socials</h2>
+                        <div class="ui stackable grid">
+                            <div class="sixteen wide column">
+                                {%if ref_view.Facebook_url|length > 0 %}
+                <a href="{{ref_view.Facebook_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-facebook column"></i></a>
+                {%endif%}
+                {%if ref_view.Twitter_url|length > 0 %}
+                <a href="{{ref_view.Twitter_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-twitter column"></i></a>
+                {%endif%}
+                {%if ref_view.Instagram_url|length > 0 %}
+                <a href="{{ref_view.Instagram_url}}" style="margin: 4px;" target="_blank"><i  class="fab fa-instagram column"></i></a>
+                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="five wide column">
+                        <br><br>
+                        <h2 class="h2tag">Awards</h2>
+                        <h4>{{ref_view.award|linebreaks}}</h4>
+                    </div> -->
+                    <div class="five wide column">
+                        <br><br>
+                        <h2 class="h2tag">Experties</h2>
+                        <h4>{{ref_view.experties|linebreaks}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="six wide column">
+                <div class="ui stackable grid">
+                    <div class="eight wide column">
+                        <h4 id="h4-tag"> Date Of Birth:</h4>
+                    </div>
+                    <div class="eight wide column">
+                        <h4 class="h4Tag" style="float: right !important; color: grey">
+                            {{ref_view.DOB|date:"d F Y"}}
+                        </h4>
+                    </div>
+                    {%if ref_view.certificate|length > 0%}
+                    <div class="eight wide column">
+                        <h4>Certificate</h4>
+                    </div>
+                    <div class="eight wide column">
+                        <h4 style="float: right !important; color: grey">
+                            {{ref_view.certificate}}
+                        </h4>
+                    </div>
+                    {%endif%}
+                    <div class="eight wide column">
+                        <h4>City, State:</h4>
+                    </div>
+                    <div class="eight wide column">
+                        <h4 style="float: right !important; color: grey">{{ref_view.city}}, {{ref_view.state}}</h4>
+                    </div>
+                    <div class="eight wide column">
+                        <h4>Experience:</h4>
+                    </div>
+                    <div class="eight wide column">
+                        <h4 style="float: right !important; color: grey">
+                            {%if ref_view.experience_in_national|length > 0%}
+                            {{ref_view.experience_in_national}}
+                            {%endif%}
+                            <br>
+                            {%if ref_view.experience_in_international|length > 0%}
+                            {{ref_view.experience_in_international}}
+                            {%endif%}
+                        </h4>
+                    </div>
+                    {%if ref_view.Employed_with|length > 0%}
+                    <div class="eight wide column">
+                        <h4>Employed With:</h4>
+                    </div>
+                    <div class="eight wide column">
+                        <h4 style="float: right !important; color: grey">
+                            {{ref_view.Employed_with|linebreaks}}
+                        </h4>
+                    </div>
+                    {%endif%}
+                    {%if ref_view.other_activites|length > 0%}
+                    <div class="eight wide column">
+                        <h4>Other Activites:</h4>
+                    </div>
+                    <div class="eight wide column">
+                        <h4 style="float: right !important; color: grey">
+                            {{ref_view.other_activites|linebreaks}}
+                        </h4>
+                    </div>
+                    {%endif%}
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="margin-top: 75px;" class="ten wide column">
+                    <hr>
+                    {{ref_view.content|safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "home/basic.html"%}
+{%load static%}
+{% load tz %}
+{%block title%}
+<title>CSI | Cueist</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{%static 'css/profile.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            {%for p in player|slice:":1"%}
+            <h2>{{p.gender}} Players</h2>
+            {%endfor%}
+                <a href="form/players/"><button style="float: right;" class="ui primary button">
+                    Submit your profile
+                </button></a>
+            <div class="four column row">
+            {%for p in player%}
+            {% if p.is_approved %}
+            <div style="padding: 10px;" class="column">
+            <div style="height: auto;width: auto;" class="ui card">
+                <div class="image">
+                    <a href=" /profiles/players/{{p.gender}}/{{p.id}}/{{p.slug}} ">
+                        <img class="player-image" src="/media/{{p.image}}" />
+                        <i class="fas fa-link"></i>
+                    </a>
+                </div>
+                <div class="content">
+                    <a href="/profiles/players/{{p.gender}}/{{p.id}}/{{p.slug}}" class="header news-container"><h3>{{p.name}}</h3></a>
+                    <div class="meta">
+                        <span class="date">{{p.breaks}}</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {% endif %}
+            {%endfor%}
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}

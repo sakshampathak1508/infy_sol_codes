@@ -1,0 +1,65 @@
+{% extends "home/basic.html"%}
+{% load static %}
+{%block title%}
+<title>CSI | {{news_view.news_title}}</title>
+{%endblock%}
+{%block body%}
+<link rel="stylesheet" href="{% static 'css/newsview.css' %}">
+<section>
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+                <h1>
+                    {{news_view.news_title}}
+                </h1>
+                <p>
+                    {{news_view.timestamp|date:"d F Y"}}
+                    <em style="margin-left: 20px; color: grey"> Written By</em>
+                    <span style="color: grey"><em>{{news_view.news_writer}}</em></span>
+                </p>
+                <img style="padding: 10px" src="/media/{{news_view.news_image}}" alt="image" />
+                <p>Read {{news_view.views}} times</p>
+                <div class="ui stackable grid">
+                    <div class="three wide column">
+                        <a id="news-link" href="#">
+                            <a href="javascript:if(window.print)window.print()"><p style="margin-top: 10px; color: black">Print</p></a>
+                        </a>
+                        <br />
+                    </div>
+                    <div class="thirteen wide column">
+                        <h3>
+                            {{news_view.content|safe}}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="five wide column">
+                <div class="ui grid">
+                    {%for s in spons %}
+                    <div class="eight wide column">
+                        <div class="image color">
+                            {%if s.url|length > 0 %}
+                            <a href="{{s.url}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%else%}
+                            <a href="/media/{{s.file}}" target="_blank">
+                                <img id="spon-image" class="brand-image" src="/media/{{s.Banner}}" />
+                                <i class="fas fa-link"></i>
+                            </a>
+                            {%endif%}
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{%block js%}
+<script>
+</script>
+{% endblock %}
